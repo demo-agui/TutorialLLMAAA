@@ -303,7 +303,12 @@ class TutorialLLM(nn.Module):
             if idx_next.item() == 0:
                 break
         return token_ids
-
+        
+    def count_parameters(self):
+        """
+        Calculates the number of trainable parameters in the model.
+        """
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
 class DpoWrapper():
     """
     Direct Preference Optimization wrapper.
